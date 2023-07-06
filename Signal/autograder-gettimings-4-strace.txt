@@ -1,0 +1,5 @@
+rt_sigaction(SIGUSR1, {sa_handler=0x55fa41c59640, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f395d280520}, NULL, 8) = 0
+kill(5, SIGUSR1)                        = 0
+--- SIGUSR1 {si_signo=SIGUSR1, si_code=SI_USER, si_pid=5, si_uid=1003} ---
+rt_sigreturn({mask=[]})                 = 0
++++ exited with 0 +++

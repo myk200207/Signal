@@ -1,0 +1,45 @@
+ran command ['make'], exit status 0
+command stdout
+----
+clang -c gettimings.c
+clang gettimings.o -o gettimings
+----
+ran command ['./gettimings', '1'], exit status 0
+command stdout
+----
+280
+----
+ran command ['./gettimings', '2'], exit status 0
+command stdout
+----
+2349
+----
+ran command ['./gettimings', '3'], exit status 0
+command stdout
+----
+1759451
+----
+ran command ['strace', '-o', '/base/__gettimings4_strace', '-e', 'trace=%signal', '-e', 'signal=all', './gettimings', '4'], exit status 0
+command stdout
+----
+105363
+----
+ran command ['/usr/bin/python3', 'run_timing5.py', '--gettimings=./gettimings'], exit status 0
+command stdout
+----
+{
+  "first_pid": 3,
+  "second_pid": 5,
+  "outputs": [
+    "3\n390733\n",
+    "5\n"
+  ],
+  "strace_output": [
+    "rt_sigprocmask(SIG_BLOCK, [USR1], NULL, 8) = 0\nkill(5, SIGUSR1)                        = 0\nrt_sigtimedwait([USR1], {si_signo=SIGUSR1, si_code=SI_USER, si_pid=5, si_uid=1003}, NULL, 8) = 10 (SIGUSR1)\n+++ exited with 0 +++\n"
+  ]
+}
+----
+command stderr
+----
+strace: Process 3 attached
+----
